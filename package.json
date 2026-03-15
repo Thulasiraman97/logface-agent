@@ -1,0 +1,9 @@
+{
+  "name": "logface-agent",
+  "version": "1.0.0",
+  "description": "MongoDB query agent for Logface attendance system",
+  "main": "mongo-query.js",
+  "dependencies": {
+    "mongodb": "^6.5.0"
+  }
+}
