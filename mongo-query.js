@@ -1,7 +1,25 @@
 import { MongoClient } from 'mongodb';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const MONGO_URI = 'mongodb://logface_dev_r:logr%230724@20.193.246.125:35035/logfacedb_dev';
-const DB_NAME = 'logfacedb_dev';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+try {
+  const envFile = fs.readFileSync(path.join(__dirname, '.env'), 'utf8');
+  envFile.split('\n').forEach(line => {
+    const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/);
+    if (match) {
+      process.env[match[1]] = match[2];
+    }
+  });
+} catch (e) {
+  // .env file might not exist, ignore
+}
+
+const MONGO_URI = process.env.MONGO_URI;
+const DB_NAME = process.env.DB_NAME || 'logfacedb_dev';
 
 function formatDateIST(date) {
   // Convert any date to IST and return DD-MM-YYYY

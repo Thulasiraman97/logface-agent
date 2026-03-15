@@ -4,6 +4,7 @@
   "description": "MongoDB query agent for Logface attendance system",
   "main": "mongo-query.js",
   "dependencies": {
-    "mongodb": "^6.5.0"
+    "dotenv": "^17.3.1",
+    "mongodb": "^4.17.2"
   }
 }
